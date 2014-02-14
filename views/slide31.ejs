@@ -1,0 +1,40 @@
+<section class="slide31-expect-match">
+  <section>
+    <h2> Expectations & Matchers </h2>
+  </section>
+  <section id="expect">
+    <p>
+      Expectations are built from the <span style="font-style:italic">expect</span>
+      function
+    </p>
+  <pre>
+  <code data-trim class="javascript">
+  describe("Hello world", function() {
+    it("says world", function() {
+      expect(helloWorld()).toContain("world");
+    });
+  });
+  </code>
+  </pre>
+  <aside class="notes">The expect function takes a value known as the acutal. They are chained
+      with a Match function which is the expected value.
+  </section>
+  <section id="matcher">
+    <p>Matchers are responsible for reporting to Jasmine if the expection is true or false </p>
+      <pre>
+  <code data-trim class="javascript">
+  describe("The 'toEqual' matcher", function() {
+    it("works for simple literals and variables", function() {
+      var a = 12;
+      expect(a).toEqual(12);
+    });
+  });
+  </code>
+</pre>
+
+    <aside class="notes">Jasmine has rich set of built-in matchers and allows for custom matchers
+    to written as well</aside>
+  </section>
+
+
+</section>

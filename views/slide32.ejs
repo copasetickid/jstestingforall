@@ -1,0 +1,35 @@
+ <section class="levo-code-example">
+ <h2>Tooltips Spec</h2>
+<pre>
+  <code data-trim class="javascript">
+describe("SanDiego.toggleTooltip", function () {
+  var clickEvent, doc, tooltip, tooltipTrigger, toolTipArea = null;
+
+  describe("interacting with a tooltip", function() {
+
+    describe("clicking on a closed tooltip", function() {
+      it("should show the tooltip area", function() {
+        tooltipTrigger = doc.find('#js-closed-tooltip');
+        toolTipArea = doc.find('.js-closed-tooltip-area');
+        SanDiego.toggleTooltip(tooltipTrigger, toolTipArea);
+        expect($(toolTipArea)).not.toBeHidden();
+      });
+    });
+  });
+
+});
+
+  </code>
+</pre>
+
+  <aside class="notes">
+    <li>This is example of an San Diego object had a function defined to toggle a toolip.</li>
+
+    <li>In this spec the matchers are provided from a jQuery extension for Jasmine called jasmine-jquery that provides a set of custom matchers for jQuery library and
+    an API to handle HTML, CSS & JSON fixtures in our specs. </li>
+
+    <li> Walk the through the it block. </li>
+  </aside>
+
+
+ </section>

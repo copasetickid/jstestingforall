@@ -1,0 +1,119 @@
+<section>
+
+  <section class="slide11">
+    <h2> Introducing Jasmine-Ajax</h2>
+
+      <aside class="notes">
+        This library lets you define a set of fake responses for
+        Ajax requests made by your app in order for you to track Ajax requests to make
+        assertions about the results.
+      </aside>
+  </section>
+
+  <section>
+    <h2>Install the mock</h2>
+
+    <pre><code data-trim>
+    beforeEach(function() {
+      loadFixtures('recommendations.html');
+      jasmine.Ajax.useMock();
+      doc = fixturesContainer();
+    });
+
+    </code></pre>
+
+    <aside class="notes">snippets from our recommendation_spec.js; Install the mock  by declaring jasmine.Ajax.useMock() before each spec runs,
+    so all Ajax requests can be captured by jasmine-ajax.
+  </aside>
+  </section>
+
+  <section>
+    <h2>Trigger the ajax request</h2>
+
+    <pre><code data-trim>
+      describe("jqCon.sanDiegoDay2", function() {
+        beforeEach(function() {
+          loadFixtures('tooltip.html');
+          jasmine.Ajax.useMock();
+          doc = fixturesContainer();
+        });
+
+        describe("user is not logged in", function(){
+          it("should not try to recommend", function(){
+            jqCon.current_user = null;
+            jqCon.sanDiegoDay2.init();
+            link = doc.find("#recommendation.js-recommend");
+            link.click();
+            expect(mostRecentAjaxRequest()).toBeFalsy();
+          });
+        });
+      });
+    </code></pre>
+
+    <aside class="notes">Before you can specify that a request uses your test response, you must have a handle to the request itself. This means that the request is made first by the code under test and then you will set your test response (see next step)</aside>
+  </section>
+
+  <section>
+    <h2>Set responses</h2>
+
+     <pre><code data-trim>
+    describe("when the recommendation succeeds", function() {
+
+      beforeEach(function() {
+        var request = mostRecentAjaxRequest();
+        request.response({status: 200, responseText: JSON.stringify({}) });
+      });
+    });
+    </code></pre>
+
+
+
+    <aside class="notes">
+      Now that you've defined some test responses and installed the mock, you need to tell jasmine-ajax which response to use for a given spec. If you want to use your success response for a set of related success specs, you might use:
+    </aside>
+  </section>
+
+  <section>
+    <h2>Inspect Ajax requests</h2>
+
+      <pre><code data-trim class="javascript">
+          describe("jqCon.sanDiegoDay2", function() {
+        beforeEach(function() {
+          loadFixtures('tooltip.html');
+          jasmine.Ajax.useMock();
+          doc = fixturesContainer();
+        });
+
+
+    describe("when the undo succeeds", function() {
+
+      beforeEach(function() {
+        var request = mostRecentAjaxRequest();
+        request.response({status: 200, responseText: JSON.stringify({}) });
+      });
+
+      it("removes the .recommended", function() {
+        expect(link).not.toHaveClass('recommended');
+      });
+
+      it("decrements the count", function() {
+        expect(link.find(".js-recommendation-count")).toHaveText('0');
+      });
+
+      it("re-enableds the link", function() {
+        clearAjaxRequests();
+        link.click();
+        expect(mostRecentAjaxRequest()).not.toBeNull();
+      });
+    });
+  });
+
+
+
+
+      </code></pre>
+      <aside class="notes">
+        Putting it all together, you can install the mock, pass some spies as callbacks to your search object, and make expectations about the expected behavior.
+      </aside>
+  </section>
+</section>

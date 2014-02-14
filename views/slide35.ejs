@@ -1,0 +1,67 @@
+<section class="slide9">
+  <section>
+    <h2> DRY Test Suite </h2>
+    <aside class="notes"> Jasmine provides a useful set of features for maintaining
+      readable tests and writing more advanced ones.
+    </aside>
+  </section>
+
+  <section class="s9a">
+   <h2> beforeEach() and afterEach() </h2>
+
+<pre> <code class="javascript">
+
+  describe("clicking on a closed tooltip", function() {
+    beforeEach(function () {
+      tooltipTrigger = doc.find('#js-closed-tooltip');
+      toolTipArea = doc.find('.js-closed-tooltip-area');
+
+    });
+
+    it("should trigger the click event", function() {
+      clickEvent = spyOnEvent(tooltipTrigger, "click");
+      $(tooltipTrigger).click();
+      expect('click').toHaveBeenTriggeredOn(tooltipTrigger);
+      expect(clickEvent).toHaveBeenTriggered();
+    });
+
+    it("should show the tooltip area", function() {
+      jqCon.toggleTooltip(tooltipTrigger, toolTipArea);
+      expect($(toolTipArea)).not.toBeHidden();
+    });
+  });
+  </code>
+</pre>
+
+    <aside class="notes">
+      Jasmine allows you to specify code to run before and after each test. This is good for
+      consisent conditions such as reseting values.Each nested describe can have its own beforeEach() and afterEach() methods for setup and teardown methods that are relevant to a particular suite.
+    </aside>
+  </section>
+
+  <section class="s9b">
+    <h2>Nested Suites</h2>
+
+  <pre>
+  <code data-trim class="javascript">
+  describe('jqCon.toggleTooltip', function() {
+    describe("interacting with a tooltip", function() {
+
+      describe("clicking on a closed tooltip", function() {
+
+      });
+      describe("clicking on a open tooltip", function() {
+
+      });
+    });
+  });
+  </code>
+  </pre>
+
+  <aside class="notes">Suites are executed in the order in which they are described.
+    As your code gets more complex and to maintain readablilty you can organize your suites
+    into groups, subgroups, sub-subgroups
+   </aside>
+
+  </section>
+</section>

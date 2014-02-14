@@ -1,0 +1,18 @@
+<section id="slide34">
+  <p>Spies</p>
+  <pre> <code data-trim class="javascript">
+    describe("clicking on a closed tooltip", function() {
+      it("should trigger the click event", function() {
+        clickEvent = spyOnEvent(tooltipTrigger, "click");
+        $(tooltipTrigger).click();
+        expect('click').toHaveBeenTriggeredOn(tooltipTrigger);
+        expect(clickEvent).toHaveBeenTriggered();
+      });
+    });
+  </code>
+</pre>
+
+<aside class="notes">
+  A spy can stub any function and tracks calls to it and its arguments.
+</aside>
+</section>

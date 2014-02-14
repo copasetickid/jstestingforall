@@ -1,0 +1,28 @@
+<section id="slide18"> 
+<pre><code data-trim>
+ 	$(function() {
+   	 // all logic in here
+	  $('#searchForm').on('submit', function (e) {
+	    e.preventDefault();
+	    if (pending) { return; }
+	    var form = $(this);
+	    var query = $.trim( form.find('input[name="q"]').val() );
+	    if (!query) { return; }
+	    pending = true;
+	    $.ajax('/data/search.json', {
+	      data : { q: query },
+	      dataType : 'json',
+	      success : function (data) {
+	        loadTemplate('people-detailed.tmpl').then(function (t) {
+	          var tmpl = _.template(t);
+	          resultsList.html( tmpl({ people : data.results }) );
+	          pending = false;
+	        });
+	      }
+	    });
+   	);
+ </code></pre>
+<aside class="notes">
+	So typically this what you may see in a someone's document.ready function, all the functionailty tied into one large function, where you're pain to make any changes if there's a feature request so writing tests if completly out of the question.
+</aside>
+</section>

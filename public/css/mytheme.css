@@ -1,0 +1,74 @@
+body {
+	background-color: #FFFAF0;
+}
+
+h2.twitter-handle {
+	color: #BD1311;
+}
+
+section#slide3 {
+  background-color: #485367;
+  background-image: url("../images/manhattan-js-logo.svg");
+  background-repeat: no-repeat;
+  background-position: top right;
+  position: relative;
+  height: 600px;
+}
+
+img.wordmark {
+  display: block;
+}
+
+section#slide8 {
+	background-color: #30C8FC;
+	height: 600px;
+}
+
+section#slide8.present h1{
+	color: #FFFFFF;
+	margin-top: 175px;
+}
+
+section#slide15 {
+  background-color: #30C8FC;
+  height: 600px;
+}
+
+section#slide15.present h1{
+  color: #FFFFFF;
+  margin-top: 175px;
+}
+
+section#slide18 {
+  height: 600px;
+}
+
+/*section#slide21 {
+  height: 600px;
+}*/
+
+section#slide38 {
+  background-color: #30C8FC;
+  height: 600px;
+}
+
+section#slide38.present h1{
+  color: #FFFFFF;
+  margin-top: 175px;
+}
+
+section.s6a.present p {
+  color: #000000;
+}
+
+section#slide34.present p {
+  color: #30C8FC;
+}
+
+section#expect.present p {
+  color: #30C8FC;
+}
+
+section#matcher.present p {
+  color: #30C8FC;
+}
